@@ -1,4 +1,4 @@
-# vuedemo2
+# 平昌县人大政协会议系统，移动端页面
 
 ## Project setup
 ```
