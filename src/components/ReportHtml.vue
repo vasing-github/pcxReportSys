@@ -1,58 +1,31 @@
 <template>
     <div class="indexnav">
-        <div
-        v-for="item in caculMeneList " 
-        :key="item.menuId" >
-            <router-link  
-            class="indexnav1" 
-            :to= "caculTo(item)"
-            style="background:#f05b72;margin-left: 3px;">
-        
-                <svg-icon :icon-class="item.icon" /> <br> 
-                {{item.menuName}}
-        </router-link>
+       <div v-html="myHtml"></div>
     </div>
-   
-    </div>
-     
 </template>
 
 <script>
     import axios from 'axios'
 
     export default {
-    name: 'ListMene',
+    name: 'reportHtml',
     props:['meneid'],
     data(){
       return {
-        caculMeneList:[],
+        myHtml:''
       }
     },
     methods:{
-        caculTo(item){
-            if(item.meneorhtml === "0")
-                return {
-                    name:'liebiao',
-                    params:{
-                    meneid:item.menuId
-                    }   
-                }
-            else
-             return {
-                    name:'reportHtml',
-                    params:{
-                    meneid:item.menuId
-                    }   
-                }
-        }
+       
     },
     mounted(){
 
-        axios.get('http://10.164.163.39:8080/report/getnotk/getbyparent?parentId='+this.$route.params.meneid).then(
+        axios.get('http://10.164.163.39:8080/report/getnotk/getone?menuId='+this.$route.params.meneid).then(
 					response => {
             //请求成功后更新List的数据
-						this.caculMeneList = response.data.data
-                        console.log(this.caculMeneList)
+                          console.log(response)
+						this.myHtml = response.data.data.content
+                        
 					},
 					error => {
 						//请求后更新List的数据

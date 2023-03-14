@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-   
-      <router-view></router-view>
+    <router-view :key="$route.fullPath"/>
+
   </div>
 </template>
 
 <script>
-
+import Header from './components/Header.vue'
+import ListMene from './components/ListMene.vue'
+import ReportHtml from './components/ReportHtml.vue'
 
 export default {
-  name: 'App',
-  
+  name: 'App', 
+  components: {Header,ListMene,ReportHtml},
 }
 </script>
 

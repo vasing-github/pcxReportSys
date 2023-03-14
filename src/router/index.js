@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import FirstPage from '../components/FirstPage.vue'
 
 import ListMene from '../components/ListMene.vue'
+import reportHtml from '../components/ReportHtml.vue'
 
 
 //创建并暴露一个路由器
@@ -16,9 +17,16 @@ export default new VueRouter({
 			props:true
 		},
 		{
+			name:"liebiao",
 			path:'/listmene/:meneid',
 			component:ListMene,
-			props:true
+			
+		},
+		{
+			name:"reportHtml",
+			path:'/reportHtml/:meneid',
+			component:reportHtml,
+			
 		},
 		{path: '/', redirect: '/firstpage/:meneid'}
 	]
