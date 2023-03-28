@@ -28,6 +28,6 @@ export default new VueRouter({
 			component:reportHtml,
 			
 		},
-		{path: '/', redirect: '/firstpage/:meneid'}
+		{path: '/', redirect: '/firstpage/201'}
 	]
 })

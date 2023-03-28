@@ -6,7 +6,7 @@
 
 <script>
     import axios from 'axios'
-
+    import { serverUrl } from './config'
     export default {
     name: 'reportHtml',
     props:['meneid'],
@@ -20,12 +20,14 @@
     },
     mounted(){
 
-        axios.get('http://10.164.163.39:8080/report/getnotk/getone?menuId='+this.$route.params.meneid).then(
+        axios.get(`${serverUrl}/report/getnotk/getone?menuId=`+this.$route.params.meneid).then(
 					response => {
             //请求成功后更新List的数据
-                          console.log(response)
-						this.myHtml = response.data.data.content
-                        
+            console.log(response)
+            var dd = response.data.data.content.replace(/<img [^>]*src=['"]([^'"]+)[^>]*>/gi, function (match, capture) {
+                 return "<img src=\"http://10.164.163.39"+capture+"\" />";
+            });
+						this.myHtml = dd             
 					},
 					error => {
 						//请求后更新List的数据

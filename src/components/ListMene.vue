@@ -12,14 +12,13 @@
                 {{item.menuName}}
         </router-link>
     </div>
-   
     </div>
      
 </template>
 
 <script>
     import axios from 'axios'
-
+    import { serverUrl } from './config'
     export default {
     name: 'ListMene',
     props:['meneid'],
@@ -48,18 +47,13 @@
     },
     mounted(){
 
-        axios.get('http://10.164.163.39:8080/report/getnotk/getbyparent?parentId='+this.$route.params.meneid).then(
+        axios.get(`${serverUrl}/report/getnotk/getbyparent?parentId=`+this.$route.params.meneid).then(
 					response => {
-            //请求成功后更新List的数据
-						this.caculMeneList = response.data.data
-                        console.log(this.caculMeneList)
+						this.caculMeneList = response.data.data                    
 					},
 					error => {
-						//请求后更新List的数据
 						console.log(msg)
 		})
-
-        
     },
     beforeDestroy(){
           
