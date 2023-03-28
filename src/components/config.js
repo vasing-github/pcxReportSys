@@ -1,0 +1,1 @@
+export const serverUrl = 'http://10.164.163.39:8080';
